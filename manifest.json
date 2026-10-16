@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "home.dictation",
+  "name": "Dictation overlay",
+  "version": "0.1.0",
+  "author": "iam033720+claude@gmail.com",
+  "license": "MIT",
+  "description": "Always-on-top recording/transcribing pill for Handy dictation, driven by the voxtype shim.",
+  "kinds": ["panel"],
+  "keepLoaded": true,
+  "entryPoints": { "panel": "Overlay.qml" }
+}
