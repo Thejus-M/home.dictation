@@ -15,6 +15,15 @@ RATE = 16000
 CHUNK = RATE // 25  # samples per reading
 
 
+def source_args(source):
+    """pw-record args; "sink:NAME" records what plays to NAME (tests)."""
+    if not source:
+        return []
+    if source.startswith("sink:"):
+        return ["-P", "{ stream.capture.sink=true }", "--target", source[5:]]
+    return ["--target", source]
+
+
 def die_with_parent():
     ctypes.CDLL("libc.so.6", use_errno=True).prctl(1, signal.SIGTERM)  # PR_SET_PDEATHSIG
 
@@ -22,7 +31,7 @@ def die_with_parent():
 def main():
     proc = subprocess.Popen(
         ["pw-record", "--raw", "--rate", str(RATE), "--channels", "1", "--format", "s16",
-         *(["--target", sys.argv[1]] if len(sys.argv) > 1 and sys.argv[1] else []), "-"],
+         *source_args(sys.argv[1] if len(sys.argv) > 1 else ""), "-"],
         stdout=subprocess.PIPE,
         stderr=subprocess.DEVNULL,
         preexec_fn=die_with_parent,

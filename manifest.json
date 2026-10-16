@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "iam033720+claude@gmail.com",
   "license": "MIT",
-  "description": "Always-on-top recording/transcribing pill for Handy dictation, driven by the voxtype shim.",
+  "description": "Compact always-on-top dictation indicator under the bar: mic + wave capsule and a one-line live preview strip.",
   "kinds": ["panel"],
   "keepLoaded": true,
   "entryPoints": { "panel": "Overlay.qml" }
